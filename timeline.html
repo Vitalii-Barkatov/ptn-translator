@@ -1,0 +1,220 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Хронологія брехні — не жартома</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Russo+One&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#e8e0cd; --paper-dark:#ddd2b8; --ink:#1a1612;
+    --red:#bf1b16; --red-deep:#8f140f; --line:rgba(26,22,18,.18);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"PT Serif",Georgia,serif;color:var(--ink);background:var(--paper);
+    background-image:radial-gradient(circle at 12% -8%, rgba(191,27,22,.09), transparent 40%);
+    min-height:100vh;position:relative;overflow-x:hidden;}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9;opacity:.05;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+
+  .wrap{position:relative;z-index:2;max-width:820px;margin:0 auto;padding:34px 22px 80px}
+
+  .back{display:inline-block;text-decoration:none;font-family:"Oswald",sans-serif;
+    text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:600;
+    color:var(--red-deep);border-bottom:2px solid var(--red-deep);padding-bottom:2px;margin-bottom:30px}
+  .back:hover{color:var(--ink);border-color:var(--ink)}
+
+  header{border-bottom:4px double var(--ink);padding-bottom:18px;margin-bottom:6px}
+  .kicker{font-family:"Oswald",sans-serif;text-transform:uppercase;letter-spacing:.3em;
+    font-weight:600;font-size:12px;color:var(--red-deep);margin:0 0 10px}
+  h1{font-family:"Russo One",sans-serif;font-weight:400;line-height:.95;margin:0;
+    letter-spacing:-.5px;font-size:clamp(34px,7vw,60px);text-transform:uppercase;}
+  h1 .red{color:var(--red)}
+  .sub{font-style:italic;font-size:clamp(15px,2.3vw,17px);margin:14px 0 0;max-width:640px;color:#3a322a}
+
+  .tl{position:relative;margin-top:42px;padding-left:36px}
+  .tl::before{content:"";position:absolute;left:8px;top:8px;bottom:4px;width:3px;background:var(--ink);opacity:.4}
+  .entry{position:relative;margin-bottom:30px}
+  .entry::before{content:"";position:absolute;left:-34px;top:4px;width:14px;height:14px;border-radius:50%;
+    background:var(--red);border:3px solid var(--paper);box-shadow:0 0 0 2px var(--ink)}
+  .date{font-family:"Oswald",sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:.14em;font-size:13px;color:var(--red-deep)}
+  .card{background:var(--paper-dark);border:2px solid var(--ink);box-shadow:5px 5px 0 var(--ink);
+    padding:16px 18px 14px;margin-top:9px}
+  .card h3{font-family:"Oswald",sans-serif;font-weight:600;font-size:clamp(18px,3vw,22px);
+    margin:0 0 12px;line-height:1.15}
+  .row{margin:0 0 10px;font-size:15.5px;line-height:1.55}
+  .row .tag{display:inline-block;font-family:"Oswald",sans-serif;font-weight:600;font-size:10.5px;
+    letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;margin-right:8px;vertical-align:1px}
+  .claim .tag{background:#e7c9c6;color:var(--red-deep);border:1px solid var(--red-deep)}
+  .truth .tag{background:var(--ink);color:var(--paper)}
+  .srcs{margin-top:12px;padding-top:11px;border-top:1px dashed var(--line);
+    display:flex;flex-wrap:wrap;gap:7px}
+  .srcs a{font-family:"Oswald",sans-serif;text-transform:uppercase;letter-spacing:.08em;
+    font-size:11px;font-weight:600;text-decoration:none;color:var(--ink);
+    border:1.5px solid var(--ink);padding:4px 9px;transition:.12s}
+  .srcs a:hover{background:var(--ink);color:var(--paper)}
+
+  footer{margin-top:50px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:#6a5f4f;line-height:1.55}
+  footer b{color:var(--ink)}
+</style>
+
+<div class="wrap">
+  <a class="back" href="index.html">&larr; До перекладача</a>
+
+  <header>
+    <p class="kicker">★ Без жартів ★ Документально</p>
+    <h1>Хронологія <span class="red">брехні</span></h1>
+    <p class="sub">Реальні заяви Кремля та російських посадовців — і те, як було насправді. Кожен кейс підтверджено першоджерелом і незалежним фактчеком. Зверху — найновіше.</p>
+  </header>
+
+  <div class="tl" id="tl"></div>
+
+  <footer>
+    Усі цитати наведено в українському перекладі; за посиланнями — оригінали та фактчеки.
+    Це освітня частина проєкту: матеріали зібрано з відкритих джерел і не є вичерпними.
+    Перелік джерел подано для самостійної перевірки.
+  </footer>
+</div>
+
+<script>
+const CASES = [
+  {
+    date: "Червень 2026",
+    title: "«Орєшнік»: удар «куди було зручно» й заміри «до міліметра»",
+    claim: "Це не бойове застосування в повному сенсі; били туди, де зручно подивитися результати — і по Білій Церкві, і по «району ДНР». «Потім наші дрони залетіли в цей сарай і порахували все до міліметра».",
+    truth: "Балістична ракета вразила гаражний кооператив під Білою Церквою та окуповану Донеччину; влучання у випадкові цілі подали як задуманий «замір точності».",
+    src: [
+      {n:"Interfax", u:"https://www.interfax.ru/russia/1094027"},
+      {n:"Profile.ru", u:"https://profile.ru/news/politics/oreshnikom-bili-tuda-gde-bylo-udobno-posmotret-na-rezultaty-zayavil-putin-1867600/"},
+      {n:"Українські Новини", u:"https://ukranews.com/news/1155898"}
+    ]
+  },
+  {
+    date: "Літо 2023 — донині",
+    title: "Мала Токмачка: село, яке «беруть» уже кілька років",
+    claim: "Зведення Міноборони РФ і Z-блогери десятки разів повідомляли про «прорив оборони» та «взяття» Малої Токмачки.",
+    truth: "Село залишається під контролем ЗСУ. 118-та ОМБр утримує район оборони понад 1500 днів; у травні 2026 це зафіксовано як національний рекорд (Книга рекордів України).",
+    src: [
+      {n:"Новая газета Европа", u:"https://novayagazeta.eu/articles/2026/05/02/malaia-tokmachka-teper-samyi-izvestnyi-tupik-na-fronte"},
+      {n:"The Insider", u:"https://theins.ru/news/292103"}
+    ]
+  },
+  {
+    date: "10 вересня 2022",
+    title: "«Тактичне перегрупування» під Ізюмом і Балаклією",
+    claim: "«Прийнято рішення перегрупувати війська в районах Балаклії та Ізюма для нарощування зусиль на Донецькому напрямку».",
+    truth: "Це був стрімкий відступ під час контрнаступу ЗСУ; за кілька днів було звільнено майже всю Харківщину.",
+    src: [
+      {n:"РИА Новости", u:"https://ria.ru/20220910/spetsoperatsiya-1815882172.html"},
+      {n:"Первый канал", u:"https://www.1tv.ru/news/2022-09-10/437489"},
+      {n:"РБК", u:"https://www.rbc.ru/politics/10/09/2022/631c9a049a7947f3e430d22e"}
+    ]
+  },
+  {
+    date: "7 липня 2022",
+    title: "«Ми ще нічого не починали»",
+    claim: "«Усі повинні знати, що ми, за великим рахунком, всерйоз ще нічого й не починали».",
+    truth: "Заяву зроблено на тлі провалу бліцкригу й величезних втрат — як демонстрацію сили, що мала приховати реальний стан справ.",
+    src: [
+      {n:"РИА Новости", u:"https://ria.ru/20220707/putin-1801061954.html"},
+      {n:"Российская газета", u:"https://rg.ru/2022/07/07/putin-o-specoperacii-my-vserez-eshche-nichego-ne-nachinali.html"}
+    ]
+  },
+  {
+    date: "30 червня 2022",
+    title: "«Жест доброї волі»: острів Зміїний",
+    claim: "«В якості кроку доброї волі ЗС РФ завершили виконання завдань на острові Зміїний і вивели гарнізон».",
+    truth: "Острів залишили під тиском українських ударів. Тією ж формулою раніше пояснювали відведення військ з-під Києва.",
+    src: [
+      {n:"RT", u:"https://russian.rt.com/ussr/article/1020538-minoborony-rossiya-vyvod-voiska-zmeinyi"},
+      {n:"РБК", u:"https://www.rbc.ru/politics/30/06/2022/62bd60f99a794772a54cb7a8"},
+      {n:"TJournal", u:"https://tjournal.ru/internet/665424"}
+    ]
+  },
+  {
+    date: "Червень 2022",
+    title: "Lada Granta без подушок безпеки та ABS",
+    claim: "Випуск авто без подушок безпеки, ABS і з екостандартом Євро-2 подавали як крок до «технологічного суверенітету»; віцепрем'єр Борісов: відсутність подушок «можна пережити».",
+    truth: "Машина з рівнем безпеки 1990-х, при цьому економія для покупця становила лише близько 11%.",
+    src: [
+      {n:"Wylsacom", u:"https://wylsa.com/avtovaz-nachal-proizvodit-lada-granta-classic-bez-podushek-bezopasnosti-i-abs/"},
+      {n:"iXBT", u:"https://www.ixbt.com/news/2022/06/19/lada-granta-classic-22-abs-300-679.html"}
+    ]
+  },
+  {
+    date: "14 квітня 2022 (визнання РФ — 2026)",
+    title: "Крейсер «Москва»: «штормове хвилювання моря»",
+    claim: "«В умовах штормового хвилювання моря корабель втратив остійчивість і затонув» — про ракети не згадували.",
+    truth: "Флагман ЧФ РФ уражений двома українськими ракетами «Нептун»; того дня в районі був штиль. У 2026 військовий суд РФ уперше офіційно визнав ураження «Нептунами» та загибель 20 членів екіпажу.",
+    src: [
+      {n:"РИА Новости", u:"https://ria.ru/20220414/kreyser-1783626130.html"},
+      {n:"Коммерсантъ", u:"https://www.kommersant.ru/doc/5306959"},
+      {n:"Current Time", u:"https://www.currenttime.tv/a/minoborony-rf-zayavilo-chto-kreyser-moskva/31804356.html"}
+    ]
+  },
+  {
+    date: "Березень 2022 і далі",
+    title: "«Усе йде суворо за планом і за графіком»",
+    claim: "Повторювана мантра керівництва РФ; Шойгу (29.03.2022): «головні завдання першого етапу виконані».",
+    truth: "«План» постійно змінювався — відмова від Києва, відступи, «часткова мобілізація» — а гасло про «графік» лишалося незмінним.",
+    src: [
+      {n:"ТВ Звезда", u:"https://tvzvezda.ru/news/2022630235-tB9vn.html"},
+      {n:"Вікіпедія: «Российский новояз»", u:"https://ru.wikipedia.org/wiki/Российский_новояз"}
+    ]
+  },
+  {
+    date: "Методичка 2020 → «бавовна» 2022",
+    title: "«Хлопок» замість «взрыв»",
+    claim: "ЗМІ рекомендували писати «хлопок» замість «взрыв»; губернатори додавали «причин для паніки немає».",
+    truth: "Евфемізм мав знизити реакцію населення на вибухи; натомість породив український мем «бавовна» (омограф рос. «хлопок»).",
+    src: [
+      {n:"Вікіпедія: «Хлопок (эвфемизм)»", u:"https://ru.wikipedia.org/wiki/Хлопок_(эвфемизм)"},
+      {n:"ТСН", u:"https://tsn.ua/exclusive/bavovna-i-bavovnyatko-kak-poyavilis-legendarnye-memy-o-vzryvah-v-rossii-2564493.html"}
+    ]
+  },
+  {
+    date: "18 березня 2020",
+    title: "«Середній клас» за ~$230",
+    claim: "Понад 70% росіян — «середній клас» (дохід від 1,5 прожиткового мінімуму, тобто від ~17 000 руб ≈ $230).",
+    truth: "Поріг настільки низький, що до «середнього класу» зарахували людей з мінімальними доходами; критики назвали це «посереднім класом».",
+    src: [
+      {n:"РБК", u:"https://www.rbc.ru/society/18/03/2020/5e71c7fd9a79478083068ee2"},
+      {n:"Meduza", u:"https://meduza.io/feature/2020/03/18/ne-sredniy-a-posredstvennyy-klass"}
+    ]
+  },
+  {
+    date: "З 2020 (загострення 2026)",
+    title: "«Відʼємне зростання» / «охолодження економіки»",
+    claim: "Замість «падіння» та «рецесія» — «відʼємне зростання», згодом «кероване охолодження економіки».",
+    truth: "Оксюморон-евфемізм для спаду. У I кварталі 2026 ВВП РФ скоротився — уперше з 2023 року.",
+    src: [
+      {n:"Свободная Пресса", u:"https://svpressa.ru/society/article/475216/"},
+      {n:"The Moscow Times (рос.)", u:"https://ru.themoscowtimes.com/2026/06/05/biznes-obvinil-chinovnikov-v-pereohlazhdenii-rossiiskoi-ekonomiki-a197480"}
+    ]
+  },
+  {
+    date: "18 листопада 2014",
+    title: "Альтернативна математика рубля",
+    claim: "«Раніше за товар у долар отримували 32 рублі, тепер — 45. Доходи бюджету збільшилися, а не зменшилися».",
+    truth: "Девальвацію подали як вигоду, ігноруючи інфляцію та падіння реальних доходів населення.",
+    src: [
+      {n:"Газета.Ru", u:"https://www.gazeta.ru/business/news/2014/11/23/n_6676361.shtml"},
+      {n:"Meduza", u:"https://meduza.io/feature/2014/12/01/tri-glavnyh-mifa-rossiyskoy-ekonomiki"}
+    ]
+  }
+];
+
+const tl = document.getElementById("tl");
+tl.innerHTML = CASES.map(c => `
+  <div class="entry">
+    <div class="date">${c.date}</div>
+    <div class="card">
+      <h3>${c.title}</h3>
+      <p class="row claim"><span class="tag">Заявили</span>${c.claim}</p>
+      <p class="row truth"><span class="tag">Насправді</span>${c.truth}</p>
+      <div class="srcs">${c.src.map(s => `<a href="${s.u}" target="_blank" rel="noopener">${s.n} &#8599;</a>`).join("")}</div>
+    </div>
+  </div>`).join("");
+</script>
