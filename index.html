@@ -104,6 +104,14 @@
     border-radius:50%;animation:sp .7s linear infinite}
   @keyframes sp{to{transform:rotate(360deg)}}
 
+  .serious{display:block;margin-top:18px;text-align:center;text-decoration:none;
+    border:2px solid var(--ink);background:transparent;color:var(--ink);
+    font-family:"Oswald",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.16em;
+    font-size:14px;padding:15px;transition:.12s}
+  .serious:hover{background:var(--ink);color:var(--paper)}
+  .serious .arr{color:var(--red);font-weight:700}
+  .serious:hover .arr{color:#fff}
+
   footer{margin-top:46px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:#6a5f4f;line-height:1.55}
   footer b{color:var(--ink)}
 </style>
@@ -137,6 +145,8 @@
       <div class="modeline" id="mode"></div>
     </div>
   </section>
+
+  <a class="serious" href="timeline.html">Не жартівлива хронологія брехні <span class="arr">&rarr;</span></a>
 
   <div id="out">
     <div class="broadcast">
